@@ -571,7 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
   chunkPrefab: {fileID: 3493321308245446232, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
-  chunkAmount: 12
+  chunkAmount: 10
   chunkParent: {fileID: 1625636932}
   chunkLength: 10
   chunkMoveSpeed: 10

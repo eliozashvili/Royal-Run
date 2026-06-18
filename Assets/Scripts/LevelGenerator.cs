@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
@@ -8,38 +9,70 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private int chunkLength;
     [SerializeField] private float chunkMoveSpeed;
 
-    private GameObject[] _chunks = new GameObject[12];
+    private Camera _mainCamera;
+    private readonly List<GameObject> _chunks = new();
 
     private void Start()
     {
-        SpawnChunks();
+        _mainCamera = Camera.main;
+        // Spawn 10 chunks before first frame by calling SpawnChunks() 10 times
+        // inside SpawnInitialChunks()
+        SpawnInitialChunks();
     }
 
     private void Update()
     {
+        // MoveChunks() is called every frame and calculations inside happen every frame
+        // NOTE: every frame loop goes from 9 to 0 backwards
+        // and checks if chunks are behind camera
         MoveChunks();
+    }
+
+    private void SpawnInitialChunks()
+    {
+        for (var i = 0; i < chunkAmount; i++)
+        {
+            SpawnChunks();
+        }
     }
 
     private void SpawnChunks()
     {
-        for (var i = 0; i < chunkAmount; i++)
-        {
-            var spawnPositionZ = transform.position.z + chunkLength * i;
-            var chunkPos = new Vector3(transform.position.x, transform.position.y, spawnPositionZ);
-            // Fourth parameter tells Instantiate to generate
-            // chunkPrefabs under chunkParent GameObject
-            var newChunk = Instantiate(chunkPrefab, chunkPos, Quaternion.identity, chunkParent);
+        var chunkSpawnPos = CalcChunkSpawnPos();
+        var newChunk = new Vector3(transform.position.x, transform.position.y, chunkSpawnPos);
+        // Fourth parameter tells Instantiate to generate
+        // chunkPrefabs under chunkParent GameObject
+        var instChunk = Instantiate(chunkPrefab, newChunk, Quaternion.identity, chunkParent);
 
-            _chunks[i] = newChunk;
-        }
+        _chunks.Add(instChunk);
+    }
+
+    private float CalcChunkSpawnPos()
+    {
+        float spawnPositionZ;
+
+        if (_chunks.Count == 0)
+            spawnPositionZ = transform.position.z;
+        else
+            spawnPositionZ = _chunks[^1].transform.position.z + chunkLength;
+
+        return spawnPositionZ;
     }
 
     private void MoveChunks()
     {
-        foreach (var chunk in _chunks)
+        for (var i = _chunks.Count - 1; i >= 0; i--)
         {
-            // Moving every chunk in _chunks array backwards
+            // Saving current chunk
+            var chunk = _chunks[i];
+            // Moving every chunk in _chunks List backwards
             chunk.transform.Translate(Vector3.back * (Time.deltaTime * chunkMoveSpeed));
+            // Skip if chunk z position is more then camera's
+            if (chunk.transform.position.z >= _mainCamera.transform.position.z - chunkLength) continue;
+
+            Destroy(chunk);
+            _chunks.Remove(chunk);
+            SpawnChunks();
         }
     }
 }
