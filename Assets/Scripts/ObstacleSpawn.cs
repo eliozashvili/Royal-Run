@@ -3,8 +3,11 @@ using System.Collections;
 
 public class ObstacleSpawn : MonoBehaviour
 {
-    [SerializeField] private GameObject obstaclePrefab;
-    [SerializeField] private float spawnObstaclesTimer;
+    [SerializeField] private GameObject[] obstaclePrefabs;
+    [SerializeField] private Transform obstacleParent;
+    [SerializeField] private float spawnObstaclesInterval;
+    [SerializeField] private float obstacleSpawnPositionX;
+
 
     private void Start()
     {
@@ -15,8 +18,13 @@ public class ObstacleSpawn : MonoBehaviour
     {
         while (true)
         {
-            Instantiate(obstaclePrefab, transform.position, Random.rotation);
-            yield return new WaitForSeconds(spawnObstaclesTimer);
+            var obstaclePrefab = obstaclePrefabs[Random.Range(0, obstaclePrefabs.Length)];
+            var randomPosX = Random.Range(-obstacleSpawnPositionX, obstacleSpawnPositionX);
+            var obstacleSpawnPosition = new Vector3(randomPosX, transform.position.y, transform.position.z);
+
+            Instantiate(obstaclePrefab, obstacleSpawnPosition, Random.rotation, obstacleParent);
+
+            yield return new WaitForSeconds(spawnObstaclesInterval);
         }
     }
 }
