@@ -4,9 +4,12 @@ using System.Collections.Generic;
 
 public class Chunk : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject fencePrefab;
     [SerializeField] private GameObject applePrefab;
     [SerializeField] private GameObject coinPrefab;
+
+    [Header("Lane Settings")]
     [SerializeField] private float[] lanes;
     [SerializeField] private float appleSpawnChance;
     [SerializeField] private float coinSpawnChance;

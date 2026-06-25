@@ -3,8 +3,11 @@ using System.Collections;
 
 public class ObstacleSpawn : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private GameObject[] obstaclePrefabs;
     [SerializeField] private Transform obstacleParent;
+
+    [Header("Obstacle Settings")]
     [SerializeField] private float spawnObstaclesInterval;
     [SerializeField] private float obstacleSpawnPositionX;
 

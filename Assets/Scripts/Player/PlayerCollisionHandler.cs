@@ -2,7 +2,10 @@ using UnityEngine;
 
 public class PlayerCollisionHandler : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private Animator animator;
+
+    [Header("Settings")]
     [SerializeField] private float collisionCooldown;
     [SerializeField] private float chunkMovementPenaltyOnCollision;
 

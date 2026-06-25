@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Oscillation : MonoBehaviour
 {
+    [Header("Movement Settings")]
     [SerializeField] private Vector3 movementVector;
     [SerializeField] private float speed;
     [SerializeField] private float rotationSpeed;
