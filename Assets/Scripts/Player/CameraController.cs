@@ -25,7 +25,7 @@ public class CameraController : MonoBehaviour
         if (_zoomCoroutine != null)
             StopCoroutine(_zoomCoroutine);
 
-        StartCoroutine(CameraFOVChange(speedAmount));
+        _zoomCoroutine = StartCoroutine(CameraFOVChange(speedAmount));
     }
 
     private IEnumerator CameraFOVChange(float speedAmount)
