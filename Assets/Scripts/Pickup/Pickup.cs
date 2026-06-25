@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pickup : MonoBehaviour
+public abstract class Pickup : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
@@ -8,7 +8,9 @@ public class Pickup : MonoBehaviour
 
         if (other.CompareTag(playerTag))
         {
-            Debug.Log(other.gameObject.name);
+            OnPickup();
         }
     }
+
+    protected abstract void OnPickup();
 }
