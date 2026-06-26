@@ -2,9 +2,17 @@ using UnityEngine;
 
 public class Coin : Pickup
 {
+    [SerializeField] private int coinValue;
+
+    private ScoreManager _scoreManager;
+
+    private void Start()
+    {
+        _scoreManager = FindAnyObjectByType<ScoreManager>();
+    }
+
     protected override void OnPickup()
     {
-        Debug.Log("You picked up a COIN");
-        Destroy(gameObject);
+        _scoreManager.IncreaseScore(coinValue);
     }
 }

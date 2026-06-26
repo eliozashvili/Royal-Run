@@ -14,7 +14,5 @@ public class Apple : Pickup
     protected override void OnPickup()
     {
         _levelGenerator.ChangeChunkMoveSpeed(powerUpBonusSpeed);
-
-        Destroy(gameObject);
     }
 }
