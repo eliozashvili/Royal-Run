@@ -6,8 +6,8 @@ public class Chunk : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GameObject fencePrefab;
-    [SerializeField] private GameObject applePrefab;
-    [SerializeField] private GameObject coinPrefab;
+    [SerializeField] private Apple applePrefab;
+    [SerializeField] private Coin coinPrefab;
 
     [Header("Lane Settings")]
     [SerializeField] private float[] lanes;
@@ -19,12 +19,21 @@ public class Chunk : MonoBehaviour
     // left, middle, right
     private readonly List<int> _availableLanes = new() { 0, 1, 2 };
 
+    private LevelGenerator _levelGenerator;
+    private ScoreManager _scoreManager;
+
     private void Start()
     {
         // Executes for each Instantiated chunkPrefab
         SpawnFence();
         SpawnApple();
         SpawnCoin();
+    }
+
+    public void Init(LevelGenerator levelGenerator, ScoreManager scoreManager)
+    {
+        _levelGenerator = levelGenerator;
+        _scoreManager = scoreManager;
     }
 
     private void SpawnFence()
@@ -56,7 +65,8 @@ public class Chunk : MonoBehaviour
             var spawnPosition = new Vector3(lanes[selectedLane], transform.position.y,
                 chunkTopZPos - (i * coinSeparationDistance));
 
-            Instantiate(coinPrefab, spawnPosition, Quaternion.identity, transform);
+            var newCoin = Instantiate(coinPrefab, spawnPosition, Quaternion.identity, transform);
+            newCoin.Init(_scoreManager);
         }
     }
 
@@ -67,7 +77,9 @@ public class Chunk : MonoBehaviour
         var selectedLane = SelectedLane();
         var spawnPosition = new Vector3(lanes[selectedLane], transform.position.y, transform.position.z);
 
-        Instantiate(applePrefab, spawnPosition, Quaternion.identity, transform);
+        var newApple = Instantiate(applePrefab, spawnPosition, Quaternion.identity, transform);
+
+        newApple.Init(_levelGenerator);
     }
 
     private int SelectedLane()

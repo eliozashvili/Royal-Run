@@ -3,10 +3,11 @@ using UnityEngine;
 
 public class LevelGenerator : MonoBehaviour
 {
-    [Header("References")]
-    [SerializeField] private GameObject chunkPrefab;
+    [Header("Dependencies")]
+    [SerializeField] private Chunk chunkPrefab;
     [SerializeField] private Transform chunkParent;
     [SerializeField] private CameraController cameraController;
+    [SerializeField] private ScoreManager scoreManager;
 
     [Header("Settings")]
     [SerializeField] private int chunkAmount;
@@ -19,7 +20,7 @@ public class LevelGenerator : MonoBehaviour
 
     private Camera _mainCamera;
 
-    private readonly List<GameObject> _chunks = new();
+    private readonly List<Chunk> _chunks = new();
 
     private void Start()
     {
@@ -65,12 +66,14 @@ public class LevelGenerator : MonoBehaviour
     private void SpawnChunks()
     {
         var chunkSpawnPos = CalcChunkSpawnPos();
-        var newChunk = new Vector3(transform.position.x, transform.position.y, chunkSpawnPos);
+        var newChunkPos = new Vector3(transform.position.x, transform.position.y, chunkSpawnPos);
         // Fourth parameter tells Instantiate to generate
         // chunkPrefabs under chunkParent GameObject
-        var instChunk = Instantiate(chunkPrefab, newChunk, Quaternion.identity, chunkParent);
+        var newChunk = Instantiate(chunkPrefab, newChunkPos, Quaternion.identity, chunkParent);
 
-        _chunks.Add(instChunk);
+        _chunks.Add(newChunk);
+
+        newChunk.Init(this, scoreManager);
     }
 
     private float CalcChunkSpawnPos()

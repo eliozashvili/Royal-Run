@@ -84,8 +84,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chunk
   fencePrefab: {fileID: 2474710402763612465, guid: ed5cf5bff351dcd4fb754cb281d72872, type: 3}
-  applePrefab: {fileID: 7679909178431306218, guid: 8a618d5d61fb93649a4a538262769500, type: 3}
-  coinPrefab: {fileID: 8982815841593990360, guid: 7d196b867f18d4744a4919de260ac15a, type: 3}
+  applePrefab: {fileID: -1727646885960050888, guid: 8a618d5d61fb93649a4a538262769500, type: 3}
+  coinPrefab: {fileID: -5596111429521714118, guid: 7d196b867f18d4744a4919de260ac15a, type: 3}
   lanes:
   - -2.5
   - 0

@@ -5909,9 +5909,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c23360606f323a24b8761022af15540c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelGenerator
-  chunkPrefab: {fileID: 3493321308245446232, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
+  chunkPrefab: {fileID: 8746108758605076642, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
   chunkParent: {fileID: 1625636932}
   cameraController: {fileID: 1108388848}
+  scoreManager: {fileID: 1114871895}
   chunkAmount: 10
   chunkLength: 10
   chunkMoveSpeed: 10

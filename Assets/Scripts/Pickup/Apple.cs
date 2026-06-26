@@ -6,9 +6,9 @@ public class Apple : Pickup
 
     private LevelGenerator _levelGenerator;
 
-    private void Start()
+    public void Init(LevelGenerator levelGenerator)
     {
-        _levelGenerator = FindAnyObjectByType<LevelGenerator>();
+        _levelGenerator = levelGenerator;
     }
 
     protected override void OnPickup()
