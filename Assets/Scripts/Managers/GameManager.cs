@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private float timer;
 
-    private bool _isGameOver;
+    public bool IsGameOver { get; private set; }
 
     private void Update()
     {
-        if (_isGameOver) return;
+        if (IsGameOver) return;
 
         timer -= Time.deltaTime;
         timerText.text = timer.ToString("F1");
@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
 
     private void GameOver()
     {
-        _isGameOver = true;
+        IsGameOver = true;
 
         playerController.enabled = false;
         gameOverText.gameObject.SetActive(true);
