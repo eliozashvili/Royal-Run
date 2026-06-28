@@ -4,10 +4,12 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [Header("References")]
     [SerializeField] private PlayerController playerController;
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text gameOverText;
     [SerializeField] private TMP_Text increaseTimerText;
+    [Header("Settings")]
     [SerializeField] private float timer;
 
     public bool IsGameOver { get; private set; }
@@ -51,6 +53,7 @@ public class GameManager : MonoBehaviour
         playerController.enabled = false;
         gameOverText.gameObject.SetActive(true);
         timerText.gameObject.SetActive(false);
+        increaseTimerText.gameObject.SetActive(false);
 
         Time.timeScale = 0.1f;
     }
