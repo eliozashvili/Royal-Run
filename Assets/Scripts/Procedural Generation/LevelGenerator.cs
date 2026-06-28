@@ -4,12 +4,14 @@ using UnityEngine;
 public class LevelGenerator : MonoBehaviour
 {
     [Header("Dependencies")]
-    [SerializeField] private Chunk chunkPrefab;
+    [SerializeField] private Chunk[] chunkPrefabs;
+    [SerializeField] private Chunk checkpointChunkPrefab;
     [SerializeField] private Transform chunkParent;
     [SerializeField] private CameraController cameraController;
     [SerializeField] private ScoreManager scoreManager;
 
     [Header("Settings")]
+    [SerializeField] private int checkpointChunkSpawnInterval;
     [SerializeField] private int chunkAmount;
     [SerializeField] private int chunkLength;
     [SerializeField] private float chunkMoveSpeed;
@@ -21,6 +23,8 @@ public class LevelGenerator : MonoBehaviour
     private Camera _mainCamera;
 
     private readonly List<Chunk> _chunks = new();
+
+    private int _chunksSpawned = 0;
 
     private void Start()
     {
@@ -65,14 +69,26 @@ public class LevelGenerator : MonoBehaviour
 
     private void SpawnChunks()
     {
+        _chunksSpawned++;
+
         var chunkSpawnPos = CalcChunkSpawnPos();
         var newChunkPos = new Vector3(transform.position.x, transform.position.y, chunkSpawnPos);
+        var randomChunk = chunkPrefabs[Random.Range(0, chunkPrefabs.Length)];
         // Fourth parameter tells Instantiate to generate
         // chunkPrefabs under chunkParent GameObject
-        var newChunk = Instantiate(chunkPrefab, newChunkPos, Quaternion.identity, chunkParent);
+        HandleChunkSpawn
+        (
+            _chunksSpawned % checkpointChunkSpawnInterval == 0
+                ? checkpointChunkPrefab
+                : randomChunk,
+            newChunkPos
+        );
+    }
 
+    private void HandleChunkSpawn(Chunk chunk, Vector3 chunkSpawnPos)
+    {
+        var newChunk = Instantiate(chunk, chunkSpawnPos, Quaternion.identity, chunkParent);
         _chunks.Add(newChunk);
-
         newChunk.Init(this, scoreManager);
     }
 
@@ -99,8 +115,9 @@ public class LevelGenerator : MonoBehaviour
             // Skip if chunk z position is more then camera's
             if (chunk.transform.position.z >= _mainCamera.transform.position.z - chunkLength) continue;
 
-            Destroy(chunk);
-            _chunks.Remove(chunk);
+            Destroy(chunk.gameObject);
+            _chunks.RemoveAt(i);
+
             SpawnChunks();
         }
     }

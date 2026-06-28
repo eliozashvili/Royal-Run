@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48967a6a871c8f5438f72a20bc88776b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Coin
-  bounceHeight: 0.5
+  bounceHeight: 1
   bounceDuration: 0.15
   coinValue: 100
 --- !u!1001 &202812145534959142
