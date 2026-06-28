@@ -19,6 +19,7 @@ public class LevelGenerator : MonoBehaviour
     [SerializeField] private float maxChunkMoveSpeed;
     [SerializeField] private float minGravity;
     [SerializeField] private float maxGravity;
+    [SerializeField] private int emptyChunksAmount;
 
     private Camera _mainCamera;
 
@@ -87,9 +88,11 @@ public class LevelGenerator : MonoBehaviour
 
     private void HandleChunkSpawn(Chunk chunk, Vector3 chunkSpawnPos)
     {
+        var isStart = _chunksSpawned <= emptyChunksAmount;
+
         var newChunk = Instantiate(chunk, chunkSpawnPos, Quaternion.identity, chunkParent);
         _chunks.Add(newChunk);
-        newChunk.Init(this, scoreManager);
+        newChunk.Init(this, scoreManager, isStart);
     }
 
     private float CalcChunkSpawnPos()

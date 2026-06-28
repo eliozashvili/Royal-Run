@@ -22,18 +22,17 @@ public class Chunk : MonoBehaviour
     private LevelGenerator _levelGenerator;
     private ScoreManager _scoreManager;
 
-    private void Start()
+    public void Init(LevelGenerator levelGenerator, ScoreManager scoreManager, bool isStart)
     {
+        _levelGenerator = levelGenerator;
+        _scoreManager = scoreManager;
+
+        if (isStart) return;
+
         // Executes for each Instantiated chunkPrefab
         SpawnFence();
         SpawnApple();
         SpawnCoin();
-    }
-
-    public void Init(LevelGenerator levelGenerator, ScoreManager scoreManager)
-    {
-        _levelGenerator = levelGenerator;
-        _scoreManager = scoreManager;
     }
 
     private void SpawnFence()

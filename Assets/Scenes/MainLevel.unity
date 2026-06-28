@@ -10995,7 +10995,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1108388847}
   - component: {fileID: 1108388849}
-  - component: {fileID: 1108388850}
+  - component: {fileID: 1108388851}
   - component: {fileID: 1108388848}
   m_Layer: 0
   m_Name: Cinemachine Camera
@@ -11080,7 +11080,7 @@ MonoBehaviour:
       BarrelClipping: 0.25
       Anamorphism: 0
   BlendHint: 0
---- !u!114 &1108388850
+--- !u!114 &1108388851
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11089,28 +11089,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1108388846}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 886251e9a18ece04ea8e61686c173e1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachinePositionComposer
-  CameraDistance: 6
-  DeadZoneDepth: 0
-  Composition:
-    ScreenPosition: {x: 0, y: 0}
-    DeadZone:
-      Enabled: 1
-      Size: {x: 0.41, y: 0.06}
-    HardLimits:
-      Enabled: 0
-      Size: {x: 0.8, y: 0.8}
-      Offset: {x: 0, y: 0}
-  CenterOnActivate: 1
-  TargetOffset: {x: 0, y: 1.6, z: 0}
-  Damping: {x: 1.75, y: 1, z: 1}
-  Lookahead:
-    Enabled: 0
-    Time: 0
-    Smoothing: 0
-    IgnoreY: 0
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineImpulseListener
+  ApplyAfter: 2
+  ChannelMask: 1
+  Gain: 1
+  Use2DDistance: 0
+  UseCameraSpace: 1
+  SignalCombinationMode: 0
+  ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    AmplitudeGain: 1
+    FrequencyGain: 1
+    Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1114871893
 GameObject:
   m_ObjectHideFlags: 0
@@ -11174,7 +11167,7 @@ MonoBehaviour:
   timerText: {fileID: 608367058}
   gameOverText: {fileID: 1753281610}
   increaseTimerText: {fileID: 38495970}
-  timer: 20
+  timer: 35
 --- !u!4 &1197135102 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6410221756858730007, guid: dcbc89efbe5bd174b99e07c76bd0b6bf, type: 3}
@@ -11248,6 +11241,7 @@ MonoBehaviour:
   maxChunkMoveSpeed: 20
   minGravity: -20
   maxGravity: -10
+  emptyChunksAmount: 3
 --- !u!1 &1753281609
 GameObject:
   m_ObjectHideFlags: 0
