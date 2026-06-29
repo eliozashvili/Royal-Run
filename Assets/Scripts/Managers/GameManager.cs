@@ -55,12 +55,18 @@ public class GameManager : MonoBehaviour
     {
         restartGameText.gameObject.SetActive(true);
         // Check every frame if Space key was pressed after Game Over
-        while (!Keyboard.current.spaceKey.wasPressedThisFrame)
+        while (!Keyboard.current.spaceKey.wasPressedThisFrame || !Keyboard.current.escapeKey.wasPressedThisFrame)
             yield return null;
 
-        Time.timeScale = 1f;
-        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(sceneIndex);
+        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        {
+            Time.timeScale = 1f;
+            var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(sceneIndex);
+        } else if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            Application.Quit();
+        }
     }
 
     private void GameOver()
