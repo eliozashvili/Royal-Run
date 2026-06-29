@@ -136,7 +136,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &38495969
 RectTransform:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ MonoBehaviour:
   - {fileID: 2997623769304510907, guid: 2c7955a2d01796d408b40cfa51c3e5be, type: 3}
   obstacleParent: {fileID: 41183676}
   spawnObstaclesInterval: 3
-  minSpawnObstaclesInterval: 0.5
+  minSpawnObstaclesInterval: 1
   obstacleSpawnPositionX: 4
 --- !u!1 &81796735
 GameObject:
@@ -11271,8 +11271,8 @@ GameObject:
   - component: {fileID: 1108388847}
   - component: {fileID: 1108388849}
   - component: {fileID: 1108388851}
-  - component: {fileID: 1108388848}
   - component: {fileID: 1108388852}
+  - component: {fileID: 1108388848}
   m_Layer: 0
   m_Name: Cinemachine Camera
   m_TagString: Untagged
@@ -11333,7 +11333,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1884616426}
+    TrackingTarget: {fileID: 0}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
