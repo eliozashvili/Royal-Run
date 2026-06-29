@@ -39,7 +39,7 @@ public class CameraController : MonoBehaviour
         var startFOV = _camera.Lens.FieldOfView;
         var targetFOV = Mathf.Clamp(startFOV + speedAmount * zoomSpeedModifier, minFOV, maxFOV);
 
-        var elapsedTime = 0f;
+        var  elapsedTime = 0f;
         while (elapsedTime < zoomDuration)
         {
             elapsedTime += Time.deltaTime;
