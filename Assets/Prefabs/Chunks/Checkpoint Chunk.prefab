@@ -1565,3 +1565,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CheckpointManager
   timerSecondsOnCheckpoint: 5
+  decreaseObstacleSpawnInterval: 0.3

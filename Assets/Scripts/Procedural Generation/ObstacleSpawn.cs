@@ -17,6 +17,11 @@ public class ObstacleSpawn : MonoBehaviour
         StartCoroutine(SpawnObstacles());
     }
 
+    public void HandleObstacleSpawnInterval(float interval)
+    {
+        spawnObstaclesInterval -= interval;
+    }
+
     private IEnumerator SpawnObstacles()
     {
         while (true)
