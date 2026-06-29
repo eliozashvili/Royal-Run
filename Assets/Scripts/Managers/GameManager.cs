@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +10,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private PlayerController playerController;
     [SerializeField] private TMP_Text timerText;
     [SerializeField] private TMP_Text gameOverText;
+    [SerializeField] private TMP_Text restartGameText;
     [SerializeField] private TMP_Text increaseTimerText;
     [Header("Settings")]
     [SerializeField] private float timer;
@@ -48,6 +51,18 @@ public class GameManager : MonoBehaviour
         timerText.text = timer.ToString("F1");
     }
 
+    private IEnumerator WaitForRestart()
+    {
+        restartGameText.gameObject.SetActive(true);
+        // Check every frame if Space key was pressed after Game Over
+        while (!Keyboard.current.spaceKey.wasPressedThisFrame)
+            yield return null;
+
+        Time.timeScale = 1f;
+        var sceneIndex = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneIndex);
+    }
+
     private void GameOver()
     {
         IsGameOver = true;
@@ -57,5 +72,7 @@ public class GameManager : MonoBehaviour
         timerText.gameObject.SetActive(false);
 
         Time.timeScale = 0.1f;
+
+        StartCoroutine(WaitForRestart());
     }
 }
