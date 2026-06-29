@@ -309,6 +309,7 @@ MonoBehaviour:
   - {fileID: 2997623769304510907, guid: 2c7955a2d01796d408b40cfa51c3e5be, type: 3}
   obstacleParent: {fileID: 41183676}
   spawnObstaclesInterval: 3
+  minSpawnObstaclesInterval: 0.5
   obstacleSpawnPositionX: 4
 --- !u!1 &81796735
 GameObject:

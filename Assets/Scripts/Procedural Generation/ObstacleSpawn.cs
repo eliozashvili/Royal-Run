@@ -9,6 +9,7 @@ public class ObstacleSpawn : MonoBehaviour
 
     [Header("Obstacle Settings")]
     [SerializeField] private float spawnObstaclesInterval;
+    [SerializeField] private float minSpawnObstaclesInterval;
     [SerializeField] private float obstacleSpawnPositionX;
 
 
@@ -20,6 +21,9 @@ public class ObstacleSpawn : MonoBehaviour
     public void HandleObstacleSpawnInterval(float interval)
     {
         spawnObstaclesInterval -= interval;
+
+        if (spawnObstaclesInterval <= minSpawnObstaclesInterval)
+            spawnObstaclesInterval = minSpawnObstaclesInterval;
     }
 
     private IEnumerator SpawnObstacles()
