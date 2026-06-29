@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator FadeIncreaseTimerText()
     {
+        if (IsGameOver) yield break;
+
         increaseTimerText.gameObject.SetActive(true);
 
         yield return new WaitForSeconds(1f);
@@ -53,7 +55,6 @@ public class GameManager : MonoBehaviour
         playerController.enabled = false;
         gameOverText.gameObject.SetActive(true);
         timerText.gameObject.SetActive(false);
-        increaseTimerText.gameObject.SetActive(false);
 
         Time.timeScale = 0.1f;
     }

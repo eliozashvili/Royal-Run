@@ -1464,6 +1464,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8746108758605076642, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
+      propertyPath: coinSpawnChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746108758605076642, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
+      propertyPath: appleSpawnChance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746108758605076642, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
+      propertyPath: lanes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8746108758605076642, guid: 4114e1b1d05a02a41a8e0988ec517a6c, type: 3}
+      propertyPath: 'lanes.Array.data[0]'
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
